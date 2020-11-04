@@ -1,0 +1,16 @@
+{
+  "name": "spelling",
+  "segmentation": {
+    "type": "mmseg",
+    "dict": {
+      "type": "text",
+      "file": "spelling.txt"
+    }
+  },
+  "conversion_chain": [{
+    "dict": {
+      "type": "text",
+      "file": "spelling.txt"
+    }
+  }]
+}

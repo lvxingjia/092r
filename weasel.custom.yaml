@@ -1,0 +1,23 @@
+#自定义皮肤
+patch:
+  "style/display_tray_icon": true    #托盘图标
+  app_options/photoshop.exe:    #在ps中关闭
+    ascii_mode: true
+  "style/color_scheme": 092R    #配色方案
+  "preset_color_schemes/092R": 
+    name: 092R
+    author: "Rinz"
+    back_color: 0xffffff    #背景
+    border_color: 0xffffff    #边框
+    text_color: 0xd24174    #已出字
+    hilited_text_color: 0xd24174    #编码
+    hilited_back_color: 0xffffff    #编码背景
+    hilited_candidate_text_color: 0xd24174    #首选
+    hilited_candidate_back_color: 0xffffff    #首选背景
+    hilited_comment_text_color: 0xc8c8c8    #首选提示
+    candidate_text_color: 0x595959    #二三选字体
+    comment_text_color: 0xc8c8c8    #二三选提示
+    label_color: 0xc8c8c8
+  "style/horizontal": false    #横竖排/t横f竖
+  #"style/font_face": "仿宋"    #字体
+  "style/font_point": 16    #字号

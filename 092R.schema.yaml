@@ -1,0 +1,163 @@
+﻿# Rime schema settings
+# encoding: utf-8
+
+schema:
+  name: 092R
+  schema_id: 092R
+  version: 0.10c
+  dependencies:
+    - py   #拼音反查
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - table_translator
+    - history_translator@h1st 
+    - reverse_lookup_translator
+  filters:
+    - simplifier
+    - uniquifier
+
+speller:
+  max_code_length: 4
+  auto_select: true
+  auto_select_unique_candidate: true
+  auto_clear: max_length    #4码清屏
+
+
+translator:
+  dictionary: 092R
+  disable_user_dict_for_patterns:
+    - "^z.*$"
+  enable_charset_filter: false
+  enable_completion: false
+  enable_encoder: false
+  enable_sentence: false
+  enable_user_dict: false
+  encode_commit_history: false
+  max_phrase_length: 4
+
+punctuator:
+  import_preset: symbols
+  full_shape:
+    "/" : "、"
+    "\\" : "\\"
+    "|" : "|"
+    "[" : "["
+    "]" : "]"
+    "{" : "{"
+    "}" : "}"
+    "<" : "<"
+    ">" : ">"
+    "?" : "?"
+    ";" : ";"
+    ":" : ":"
+    "'" : "'"
+    "\"" : "\""
+    "`" : "`"
+    "~" : "~"
+    "!" : "!"
+    "@" : "@"
+    "#" : "#"
+    "$" : "$"
+    "%" : "%"
+    "^" : "^"
+    "*" : "*"
+    "(" : "("
+    ")" : ")"
+    "-" : "-"
+    "_" : "_"
+    "=" : "="
+    "+" : "+"
+
+  half_shape:
+    "/" : "、"
+    "\\" : "\\"
+    "|" : "|"
+    "[" : "["
+    "]" : "]"
+    "{" : "{"
+    "}" : "}"
+    "<" : "<"
+    ">" : ">"
+    "?" : "?"
+    ";" : ";"
+    ":" : ":"
+    "'" : "'"
+    "\"" : "\""
+    "`" : "`"
+    "~" : "~"
+    "!" : "!"
+    "@" : "@"
+    "#" : "#"
+    "$" : "$"
+    "%" : "%"
+    "^" : "^"
+    "*" : "*"
+    "(" : "("
+    ")" : ")"
+    "-" : "-"
+    "_" : "_"
+    "=" : "="
+    "+" : "+"
+
+recognizer:
+  import_preset: default
+  patterns:
+    reverse_lookup: "`[a-z]*'?$"
+
+reverse_lookup:
+  dictionary: py
+  preedit_format:
+    - "xform/([nl])v/$1ü/"
+    - "xform/([nl])ue/$1üe/"
+    - "xform/([jqxy])v/$1u/"
+  prefix: "`"
+  suffix: "'"
+  tips: 〔拼音〕
+
+simplifier:
+  opencc_config: s2t.json
+  option_name: simp_trad
+
+h1st:    
+  input: z
+  size: 1
+  initial_quality: 1
+
+switches:    #开关
+  - name: ascii_mode
+    reset: 0    #切换输入法时，默认1英文2中文
+    states: [ 中文, 英文 ]
+  - name: ascii_punct
+    states: [ 标点, 符号 ]
+  - name: full_shape
+    states: [ 半角, 全角 ]
+  - name: simp_trad
+    reset: 0    #默认为简体
+    states: [ 简体, 繁体 ]
+
+key_binder:
+  bindings:
+    - {accept: semicolon, send: 2, when: has_menu}
+    - {accept: apostrophe, send: 3, when: has_menu}
+    - {accept: comma, send: comma, when: paging}
+    - {accept: period, send: period, when: has_menu}
+  import_preset: default
+
+#2020年4月7日
